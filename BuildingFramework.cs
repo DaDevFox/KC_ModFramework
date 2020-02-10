@@ -8,7 +8,16 @@ using UnityEngine;
 using Assets;
 using Assets.Code;
 
+
 namespace BuildingFramework.Code {
+
+    public struct BuildingInfo {
+        public 
+
+
+    }
+
+
    public class BuildingFramework: MonoBehaviour
    {
 
