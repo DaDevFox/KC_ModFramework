@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 3950501709
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b06205b13788cb8b1dc110cc3458325a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 017da692c83cc28944fa1f77f78664e9
+HashAppended: 1
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+Assets:
+- Assets/KCAssets/Models/ExampleHouse.fbx
+Dependencies: []

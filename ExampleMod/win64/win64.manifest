@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 2801945524
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: settingspanel_29c409c6c07ef6ddecce0edbd101535d
+      Dependencies: {}
+    Info_1:
+      Name: custombuilding_cffbce49502340f912f9c09ee307994f
+      Dependencies: {}
+    Info_2:
+      Name: buildingreplacemodeltest_60820a7aa55b015db79ba41101f2a50a
+      Dependencies: {}
