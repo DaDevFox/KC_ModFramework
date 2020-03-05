@@ -9,7 +9,7 @@ using Harmony;
 
 namespace ClassLibrary1
 {
-    class ExampleMod : MonoBehaviour
+    class BuildingSkinSampleMod : MonoBehaviour
     {
         public static KCModHelper helper;
         public static Mesh houseMesh;
@@ -36,7 +36,7 @@ namespace ClassLibrary1
     {
         static void Postfix()
         { 
-            BuildingFramework.Code.BuildingFramework.ReplaceBuildingModelBase("archerschool", ExampleMod.houseMesh);
+            BuildingFramework.Code.BuildingFramework.ReplaceBuildingModelBase("archerschool", Main.houseMesh);
         }
     }
 
