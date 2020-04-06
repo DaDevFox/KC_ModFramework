@@ -1,0 +1,14 @@
+﻿2020-04-05T21:21:20:The Object you want to instantiate is null.
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, UnityEngine.Transform parent, System.Boolean instantiateInWorldSpace) [0x0004c] in <ff9aad6778ce4321ac2cd4e0b6aa1603>:0 
+  at UnityEngine.Object.Instantiate[T] (T original, UnityEngine.Transform parent, System.Boolean worldPositionStays) [0x00001] in <ff9aad6778ce4321ac2cd4e0b6aa1603>:0 
+  at UnityEngine.Object.Instantiate[T] (T original, UnityEngine.Transform parent) [0x00001] in <ff9aad6778ce4321ac2cd4e0b6aa1603>:0 
+  at BuildingFramework.Procedures.rep_base (Building b, BuildingFramework.GenericBuildingModelInfo modelInfo) [0x0002e] in <f0b320e0f37f4bc0b203f194220818b4>:0 
+  at BuildingFramework.GenericBuildingModelInfo.<.ctor>b__0_1 (Building b) [0x00001] in <f0b320e0f37f4bc0b203f194220818b4>:0 
+  at BuildingFramework.ModelHelper.ExecuteReplaceProcedure (BuildingFramework.BuildingModelInfo modelInfo) [0x00025] in <f0b320e0f37f4bc0b203f194220818b4>:0 
+  at BuildingFramework.ModelHelper+InitPatch.Postfix () [0x00020] in <f0b320e0f37f4bc0b203f194220818b4>:0 
+2020-04-05T21:35:12:The Object you want to instantiate is null.
+  at UnityEngine.Object.Instantiate[T] (T original) [0x0003d] in <ff9aad6778ce4321ac2cd4e0b6aa1603>:0 
+  at BuildingFramework.Procedures.rep_base (Building b, BuildingFramework.GenericBuildingModelInfo modelInfo) [0x00022] in <98166eefda3245488fca1878d91e6a58>:0 
+  at BuildingFramework.GenericBuildingModelInfo.<.ctor>b__0_1 (Building b) [0x00001] in <98166eefda3245488fca1878d91e6a58>:0 
+  at BuildingFramework.ModelHelper.ExecuteReplaceProcedure (BuildingFramework.BuildingModelInfo modelInfo) [0x00025] in <98166eefda3245488fca1878d91e6a58>:0 
+  at BuildingFramework.ModelHelper+InitPatch.Postfix () [0x00020] in <98166eefda3245488fca1878d91e6a58>:0 
