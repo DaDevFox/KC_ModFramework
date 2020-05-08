@@ -8,7 +8,7 @@ Examples
 
 ### Reskin
 
-Example of how you reskin buildings
+Read ReskinGuide.md
 
 ### Building
 
