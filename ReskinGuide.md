@@ -266,7 +266,7 @@ each of those correspond to an element of the model of the Keep, as you can imag
 
 Every entry in the **Building Models Information** section that's supported has a corresponding `BuildingSkin` in code. 
 
-in order to make a BuildingSkin, all they have to do is create an instance of it: 
+In order to make a BuildingSkin, all you have to do is create an instance of it: 
 
 ```cs
 	KeepBuildingSkin keepSkin = new KeepBuildingSkin();
@@ -275,6 +275,8 @@ in order to make a BuildingSkin, all they have to do is create an instance of it
 	keepSkin.keepUpgrade3 = upgrade2;
 	keepSkin.keepUpgrade4 = upgrade3;
 ```
+
+This BuildingSkin will be a container for the data regarding this skin for the keep, we can do more on the same building if we wish in teh future, or more on other buildings. 
 
 If fields are left `null`, they won't be reskinned, in this case we don't have a skin for the banners, so they will be left alone. 
 
