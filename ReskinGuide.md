@@ -8,7 +8,9 @@ Buildings in Kingdoms and Castles don't have a standard format that can be used 
 # How the Framework works
 
 Every building in the game has different specifications, so in order to create a model for any, you first have to do research and find out what kinds of models it uses, how many models it uses, and how to change those models, which is a different process for each building. This process is made even more of a headache when you consider the variuos particle systems, peasant positions, and resource stacks that must be corrected in order to make the model look good.  
+
 This is what the Framework takes care of for you, we've already gone ahead and done the research and the coding so you can simply put in your models with little effort. 
+
 To reskin a building through the framework, first a model, or multiple models, depending on the buliding, must be made to be used in the reskinning, those models will then be processed by the framework and injected into the building, doing its best to preserve its tree structure so animations (yes, some buildings have animations), funcitonality, and certain visual elements can stay unbroken. 
 The Framework also takes into account your various collections, their compatability with other collections, and it also does it's best to allow multiple reskins to run at the same time. 
 
