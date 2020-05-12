@@ -40,11 +40,17 @@ Every entry in the Building Models Information corresponds to a building in King
 Entries usually contain multiple elements, which can include:
 
 `[Not Supported]`: If this is present, it means the building is not supported by the Framework 
+
 `Name`: The friendly name shown in the build menu, what you likely know it by *
+
 `UniqueName`: The name of the building used in many places in code *
+
 `Models`: A list of the different models the building incorporates and their types and descriptions *
+
 `[Dynamic Stacks]`: If this is present, it means Resource Stacks can be added or removed from the building
+
 `Stacks`: A list of all the Stacks a building uses
+
 `ResourceStacks`: A list of all the ResourceStacks a building uses
 
 *Items with a * are always present*
@@ -62,13 +68,17 @@ To start, pick a building to begin modelling, and look it up in the **Building M
 The first piece of information you need to look at is the *Models* section, this will tell you what and how to model for a reskin of your chosen building, below is a highlight of all the important information you'll need to understand while reading the **Building Models Information** section. 
 
 *Models*: The different 3D Models the building uses, these can be *Instance* models or *Modular* models, you will have to model differently according to the type
-            **Instance Models**:
-            An **Instance** model is one that will be instanced inside of the original building, meaning that model, and all of its children will be *added* to the building, so you can add extra things to the model, like lights or doors, and even add code to make it move or do something during game. With this type of model, all you need to make sure to do is make sure that your scaling and translation is correct, and that it's in a `GameObject` form, the framework won't take raw mesh data, I.E. `.fbx`, `.obj`, or any other export format from your chosen modelling application except `.prefab` More information on this in the **To Make a Model** section.  
-			**Modular Models**: 
-			A *Modular* model isn't the same as an *Instance* model, and in some ways it's even the opposite. Certain buildings interchange their models in a different way, in which they use *only* the mesh data involved with the base GameObject, excluding it's children, and any transformations applied in the Unity Editor, including scale and rotation. This means that if you have a model that was rotated 90 degrees before being imported into Unity, and then you corrected it in the editor, it will disregard this, so all scaling and rotation must be applied *before* being imported into Unity. It will also disregard the children of your model, so this version cannot have arbitrary elements added on to it. 
-			These types of models are usually used on modular pieces, hence the name, such as Castle Block variations or Road variations. 
-		  **Information Format**:
-		  	(model name) | (model type, either *Instance* or *Modular*): (model description)
+**Instance Models**:
+
+An **Instance** model is one that will be instanced inside of the original building, meaning that model, and all of its children will be *added* to the building, so you can add extra things to the model, like lights or doors, and even add code to make it move or do something during game. With this type of model, all you need to make sure to do is make sure that your scaling and translation is correct, and that it's in a `GameObject` form, the framework won't take raw mesh data, I.E. `.fbx`, `.obj`, or any other export format from your chosen modelling application except `.prefab` More information on this in the **To Make a Model** section.  
+
+**Modular Models**: 
+A *Modular* model isn't the same as an *Instance* model, and in some ways it's even the opposite. Certain buildings interchange their models in a different way, in which they use *only* the mesh data involved with the base GameObject, excluding it's children, and any transformations applied in the Unity Editor, including scale and rotation. This means that if you have a model that was rotated 90 degrees before being imported into Unity, and then you corrected it in the editor, it will disregard this, so all scaling and rotation must be applied *before* being imported into Unity. It will also disregard the children of your model, so this version cannot have arbitrary elements added on to it. 
+
+These types of models are usually used on modular pieces, hence the name, such as Castle Block variations or Road variations. 
+
+**Information Format**:
+(model name) | (model type, either *Instance* or *Modular*): (model description)
 
 ### To Make a Model
 
@@ -147,12 +157,14 @@ An **Instanced** stack is a bit more complicated, there's really only 1 new requ
 When the stack get's filled up, it will slowly show/hide each of the corresponding resource GameObjects, allowing you to make formations with the stack. 
 
 > **Important**: The only way to use any model or prefab in a mod, as will be explained later, is to package it into an AssetBundle. AssetBundles can hold Meshes, GameObjects, Prefabs, Materials, anything that Unity should recognize, except scripts. 
+
 This means that any components you add to your GameObject will have to be added through **code**.
 
 This piece will be revisited in the code, due to the fact that the components will have to be added via code and not through the editor. 
 
 **ResourceStacks vs Stacks**
 Here, it's important to know the distinction between Stacks and ResourceStacks. 
+
 A *Stack* is a purely graphical stack of resources, like the stacks of wood you see form in stockpiles, but it doesn't have any actual functionality. A *ResourceStack* is a Stack that also has functionality and will actually be used as storage when in game. Usually, changing a ResourceStack's values will actually affect gameplay, as well as making things look different, so be careful to make sure you don't change any of the default values
 
 #### Changing Existing Resource Stacks
@@ -180,12 +192,14 @@ Stacks:
     ....
     here all the Stacks will be listed in the format below
 ```
+
 **Format**:
 (stack name) | (stack type): (stack description) | (stack default value and resource type)
 
 ### Coming Soon
 
 Ability to change particles
+
 Ability to change people positions
 
 #  Code
