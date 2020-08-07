@@ -1,5 +1,5 @@
-# BuildingFramework Guide | Reskinning | Kingdoms and Castles Modding
-
+BuildingFramework Guide | Reskinning | Kingdoms and Castles Modding
+=
 Buildings in Kingdoms and Castles don't have a standard format that can be used to generically reskin any building in the game. Becuase of this, every building has different models and specifications to be built to. This makes reskinning buildings in KC more difficult than it needs to be, because of this, We've brought a framework for people with ranging levels of skill in either coding or art, so that someone less experienced in either shouldn't have to be deterred from reskinning anything!
 
 ![Image](https://media.discordapp.net/attachments/294162953337307138/704799796325515315/Sky_Over_View.png "Amazing Models by TPunko")
@@ -9,7 +9,7 @@ Buildings in Kingdoms and Castles don't have a standard format that can be used 
 
 Every building in the game has different specifications, so in order to create a model for any, you first have to do research and find out what kinds of models it uses, how many models it uses, and how to change those models, which is a different process for each building. This process is made even more of a headache when you consider the variuos particle systems, peasant positions, and resource stacks that must be corrected in order to make the model look good.  
 
-This is what the Framework takes care of for you, we've already gone ahead and done the research and the coding so you can simply put in your models with little effort. 
+This is what the Framework takes care of for you, we've already gone ahead and done the research and the coding so you can simply put in your models with little effort.
 
 To reskin a building through the framework, first a model, or multiple models, depending on the buliding, must be made to be used in the reskinning, those models will then be processed by the framework and injected into the building, doing its best to preserve its tree structure so animations (yes, some buildings have animations), funcitonality, and certain visual elements can stay unbroken. 
 The Framework also takes into account your various collections, their compatability with other collections, and it also does it's best to allow multiple reskins to run at the same time. 
@@ -27,16 +27,16 @@ Usually when you give a Compatability Identifier it's the mod name, or if you wa
 > A mod does not have to be limited to only one collection, however I recomend that you only put one collection in every mod so that anybody who want's one of the collections but not the other can subscribe to them seperately.  
 
 
-# How to use the **Building Models Information** section
+# How to use the **Building Index**
 
-The **Building Models Information** section is organized into entries of information which usually look like this, sometimes with a little bit of extra information. 
+The **Building Index** is organized into entries of information which usually look like this, sometimes with a little bit of extra information. 
 ```
 -- BuildingName --
 Name: ...
 UniqueName: ...
 Models: ...
 ```
-Every entry in the Building Models Information corresponds to a building in Kingdoms and Castles.
+Every entry in the Building Index corresponds to a building in Kingdoms and Castles.
 Entries usually contain multiple elements, which can include:
 
 `[Not Supported]`: If this is present, it means the building is not supported by the Framework 
@@ -53,6 +53,7 @@ Entries usually contain multiple elements, which can include:
 
 `ResourceStacks`: A list of all the ResourceStacks a building uses
 
+
 *Items with a * are always present*
 
 
@@ -61,28 +62,34 @@ Entries usually contain multiple elements, which can include:
 
 The first step is, somewhat obviously, to create a model to use. 
 
-To start, pick a building to begin modelling, and look it up in the **Building Models Information** section. Once you've found it, look at all the corresponding information below its name, most of it is important and could affect how you need to make your art, so you should know what it means and how it will affect you.  
+To start, pick a building to begin modelling, and look it up in the **Building Index** section. Once you've found it, look at all the corresponding information below its name, most of it is important and could affect how you need to make your art, so you should know what it means and how it will affect you.  
 
 ### Know what to model
 
-The first piece of information you need to look at is the *Models* section, this will tell you what and how to model for a reskin of your chosen building, below is a highlight of all the important information you'll need to understand while reading the **Building Models Information** section. 
+The first piece of information you need to look at is the *Models* section, this will tell you what and how to model for a reskin of your chosen building, below is a highlight of all the important information you'll need to understand while reading the **Building Index** section. 
 
 *Models*: The different 3D Models the building uses, these can be *Instance* models or *Modular* models, you will have to model differently according to the type
-**Instance Models**:
 
-An **Instance** model is one that will be instanced inside of the original building, meaning that model, and all of its children will be *added* to the building, so you can add extra things to the model, like lights or doors, and even add code to make it move or do something during game. With this type of model, all you need to make sure to do is make sure that your scaling and translation is correct, and that it's in a `GameObject` form, the framework won't take raw mesh data, I.E. `.fbx`, `.obj`, or any other export format from your chosen modelling application except `.prefab` More information on this in the **To Make a Model** section.  
+            **Instance Models**:
+            An **Instance** model is one that will be instanced inside of the original building, meaning that model, and all of its children will be *added* to the building, so you can add extra things to the model, like lights or doors, and even add code to make it move or do something during game. With this type of model, all you need to make sure to do is make sure that your scaling and translation is correct, and that it's in a `GameObject` form, the framework won't take raw mesh data, I.E. `.fbx`, `.obj`, or any other export format from your chosen modelling application except `.prefab` More information on this in the **To Make a Model** section.  
 
-**Modular Models**: 
-A *Modular* model isn't the same as an *Instance* model, and in some ways it's even the opposite. Certain buildings interchange their models in a different way, in which they use *only* the mesh data involved with the base GameObject, excluding it's children, and any transformations applied in the Unity Editor, including scale and rotation. This means that if you have a model that was rotated 90 degrees before being imported into Unity, and then you corrected it in the editor, it will disregard this, so all scaling and rotation must be applied *before* being imported into Unity. It will also disregard the children of your model, so this version cannot have arbitrary elements added on to it. 
+			**Modular Models**: 
+			A *Modular* model isn't the same as an *Instance* model, and in some ways it's even the opposite. Certain buildings interchange their models in a different way, in which they use *only* the mesh data involved with the base GameObject, excluding it's children, and any transformations applied in the Unity Editor, including scale and rotation. This means that if you have a model that was rotated 90 degrees before being imported into Unity, and then you corrected it in the editor, it will disregard this, so all scaling and rotation must be applied *before* being imported into Unity. It will also disregard the children of your model, so this version cannot have arbitrary elements added on to it. 
 
-These types of models are usually used on modular pieces, hence the name, such as Castle Block variations or Road variations. 
+			These types of models are usually used on modular pieces, hence the name, such as Castle Block variations or Road variations. 
 
-**Information Format**:
-(model name) | (model type, either *Instance* or *Modular*): (model description)
+		  **Information Format**:
+		  	(model name) | (model type, either *Instance* or *Modular*): (model description)
+
+Certain buildings have a very specific layout they must follow in order for an animation to not break, one example is the ballista. Shown below is a diagram of the ballista and the various pieces that need to be modelled.
+
+![Image](https://i.ibb.co/bP4Mp58/ballista.png)
+
+These pieces, disregarding the flag and veteran model, must be in the correct position and alignment for it to work. 
 
 ### To Make a Model
 
-First, as talked about already, look up your building in the **Building Models Information** section of this guide and gather your information for how and what to model. 
+First, as talked about already, look up your building in the **Building Index** section of this guide and gather your information for how and what to model. 
 
 Once that is done, make the model in your chosen art program! I recommend using [Blender](https://www.blender.org/) because it's free, although I'm not much of an artist, so you can use whatever, but make sure that it can export files in a format supported by unity: [here](https://docs.unity3d.com/Manual/3D-formats.html)'s a list of all those formats
 
@@ -157,14 +164,12 @@ An **Instanced** stack is a bit more complicated, there's really only 1 new requ
 When the stack get's filled up, it will slowly show/hide each of the corresponding resource GameObjects, allowing you to make formations with the stack. 
 
 > **Important**: The only way to use any model or prefab in a mod, as will be explained later, is to package it into an AssetBundle. AssetBundles can hold Meshes, GameObjects, Prefabs, Materials, anything that Unity should recognize, except scripts. 
-
 This means that any components you add to your GameObject will have to be added through **code**.
 
 This piece will be revisited in the code, due to the fact that the components will have to be added via code and not through the editor. 
 
 **ResourceStacks vs Stacks**
 Here, it's important to know the distinction between Stacks and ResourceStacks. 
-
 A *Stack* is a purely graphical stack of resources, like the stacks of wood you see form in stockpiles, but it doesn't have any actual functionality. A *ResourceStack* is a Stack that also has functionality and will actually be used as storage when in game. Usually, changing a ResourceStack's values will actually affect gameplay, as well as making things look different, so be careful to make sure you don't change any of the default values
 
 #### Changing Existing Resource Stacks
@@ -192,7 +197,6 @@ Stacks:
     ....
     here all the Stacks will be listed in the format below
 ```
-
 **Format**:
 (stack name) | (stack type): (stack description) | (stack default value and resource type)
 
@@ -200,12 +204,14 @@ Stacks:
 
 Ability to change particles
 
-Ability to change people positions
+Ability to change peasant working positions
+
+Ability to change Stacks and ResourceStacks
 
 #  Code
 This section will require at least some technical expertise in programming, if you aren't a developer and you're just here to see the barebones of how to get your models into the game, that's fine too! I'll try and keep the guide nice and simple, but I'll have some of the more technical details towards the end for you nerds out there like me :p
 
-To begin, you'll need to have your models set and ready to go, for this I reccomend reading the section on modelling and finding information about the models in the **Building Models Information** section. 
+To begin, you'll need to have your models set and ready to go, for this I reccomend reading the section on modelling and finding information about the models in the **Building Index** section. 
 
 Once you have that done, you'll need to export that into an AssetBundle, this process is already covered in the Kingdoms and Castles [Mod Tutorial](https://modtutorial.kingdomsandcastles.com/) so I won't go into too much detail over it. 
 
@@ -241,7 +247,7 @@ Now we need to load our AssetBundle. for that we can add the following code in S
     {
         // code from before
         
-        AssetBundle bundle = KCModHelper.LoadAssetBundle(_helper.modPath + /*relative path of AssetBundle to  mod folder root*/, "NameOfAssetBundle");
+        AssetBundle bundle = KCModHelper.LoadAssetBundle(_helper.modPath + /*path of AssetBundle to relative mod folder root*/, "NameOfAssetBundle");
     }
 ```
 
@@ -253,7 +259,7 @@ That should load our AssetBundle and have it ready to use, but now we need to ex
 	{
         // code from before
 
-		AssetBundle bundle = KCModHelper.LoadAssetBundle(_helper.modPath + /*relative path of AssetBundle to  mod folder root*/, "NameOfAssetBundle");
+		AssetBundle bundle = KCModHelper.LoadAssetBundle(_helper.modPath + /*path of AssetBundle to relative mod folder root*/, "NameOfAssetBundle");
 		
 		GameObject upgrade0 = bundle.LoadAsset("Assets/AssetBundles/ExampleMod/Keep/upgrade0.prefab") as GameObject;
 		GameObject upgrade1 = bundle.LoadAsset("Assets/AssetBundles/ExampleMod/Keep/upgrade1.prefab") as GameObject;
@@ -266,7 +272,7 @@ That code will take our 4 assets and store them in variables.
 
 Up until this point, all of this code has been covered in the KC Mod Tutorial, so if you're having trouble understanding something, I highly recommend you go back and review the tutorial's explanation also, but now we're gonna get into the specifics of how the Framework's code works. 
 
-The first thing you need to know is that each skin has a class that extends `BuildingSkin`. `KeepBuildingSkin` is a skin for the Keep, `HospitalBuildingSkin` is a skin for the Hospital, and so on. 
+The first thing you need to know is that each skin has a class that extends `Skin`, these are just classes with variables regarding the specifics of each skin, basically a data container that gets passed to the Engine to execute the skin. Certain skins inherit from a class called `BuildingSkin` and are usually called `xxBuildingSkin`, these are skins specifically for buildings. `KeepBuildingSkin` is a skin for the Keep, `HospitalBuildingSkin` is a skin for the Hospital, and so on. 
 
 Each of these classes have variables that you can modify, for the keep they are:
 
@@ -280,9 +286,9 @@ Each of these classes have variables that you can modify, for the keep they are:
 
 each of those correspond to an element of the model of the Keep, as you can imagine, Keep upgrades 1-4 are the different looks for the Keep as it gets upgraded, and the 2 banners are the banners that swing in the wind above the Keep. 
 
-Every entry in the **Building Models Information** section that's supported has a corresponding `BuildingSkin` in code. 
+Every entry in the **Building Index** section that's supported has a corresponding `BuildingSkin` in code. 
 
-In order to make a BuildingSkin, all you have to do is create an instance of it: 
+in order to make a BuildingSkin, all they have to do is create an instance of it: 
 
 ```cs
 	KeepBuildingSkin keepSkin = new KeepBuildingSkin();
@@ -292,28 +298,33 @@ In order to make a BuildingSkin, all you have to do is create an instance of it:
 	keepSkin.keepUpgrade4 = upgrade3;
 ```
 
-This BuildingSkin will be a container for the data regarding this skin for the keep, we can do more on the same building if we wish in teh future, or more on other buildings. 
+If fields are left `null`, they won't be reskinned, in this case we don't have a skin for the banners, so they will be left alone by the engine. 
 
-If fields are left `null`, they won't be reskinned, in this case we don't have a skin for the banners, so they will be left alone. 
+So now we have our skin, but we still need to register it so it gets proccessed. 
 
-So now we have our skin, but we now need to register it so it gets proccessed. 
-
-In order to register skins to the framework, they need to be added to a `ReskinProfile` this is just a collection of skins and it will be assigned a *Collection* and *Compatability Identifier* (see **Collections and Compatibility** for more info) so that the framework knows where the skins are coming from and how they should be treated. 
+In order to register skins to the framework, they need to be added to a `ReskinProfile` this is just a collection of skins that will be assigned a *Collection* and *Compatability Identifier* (see **Collections and Compatibility** for more info) so that the framework knows where the skins are coming from and how they should be treated. 
 
 
 ```cs
-	// this should always be at the begginning of SceneLoaded
+	// This should always be at the begginning of SceneLoaded
+
+	// This piece of code creates a new ReskinProfile with the collection name 'My Super Awesome Collection' and compatability identifier 'Fox's Collections'
 	ReskinProfile exampleModProfile = new ReskinProfile("My Super Awesome Collection" /* Collection name */, "Fox's Collections" /* Compatability Identifier */);
 
-	// this block of code will be repeated for every skin
+	// With slight variation, this block of code will be repeated for every skin
+
+	// This part specifies which skin is being created and assigns it a name, in this case, we are creating a KeepBuildingSkin, which is a skin for the building keep, and assigning it the name 'keepSkin'
 	KeepBuildingSkin keepSkin = new KeepBuildingSkin();
+	// We then assign each of the variables of the keep skin to their values, these can be found in the Building Index section
 	keepSkin.keepUpgrade1 = upgrade0;
 	keepSkin.keepUpgrade2 = upgrade1;
 	keepSkin.keepUpgrade3 = upgrade2;
 	keepSkin.keepUpgrade4 = upgrade3;
+
+	// This part adds the skin to the ReskinProfile we created eariler
 	exampleModProfile.Add(keepSkin);
 
-	// this should always be at the end of SceneLoaded
+	// This should always be at the end of SceneLoaded
 	exampleModProfile.Register();
 ```
 
@@ -323,124 +334,439 @@ In order to register skins to the framework, they need to be added to a `ReskinP
 
 
 
-Building Models Information
+Building Index
 ===========================
 
  -- Castle --
 --------------
 
- -- Keep --
+-- Keep --
 Name: Keep
 UniqueName: keep
-Models: 
-	keepUpgrade1 | Instance: The base upgrade for the keep
-	keepUpgrade2 | Instance: The second upgrade for the keep
-	keepUpgrade3 | Instance: The third upgrade for the keep
-	keepUpgrade4 | Instance: The final upgrade for the keep
-ResourceStacks:
-	foodStack:  Normal    | A ResourceStack that contains wheat  | Wheat: Unknown
-	appleStack: Normal    | A ResourceStack that contains apples | Apples: Unknown
-	stoneStack: Instanced | A ResourceStack that contains stone  | 35
-	woodStack:  Instanced | A ResourceStack that contains wood   | Wood: 35
+Models:
+	keepUpgrade1:         Instance | The base upgrade for the keep
+	keepUpgrade2:         Instance | The second upgrade for the keep
+	keepUpgrade3:         Instance | The third upgrade for the keep
+	keepUpgrade4:         Instance | The fourth upgrade for the keep
+	------------
+	banner1:              Instance | The left banner for the keep
+	banner2:              Instance | The right banner for the keep
 
 -- Wooden Castle Block --
-Name: Wood Castle Block
+Name: Wooden Castle Block
 UniqueName: woodcastleblock
-Models: 
-	doorPrefab | Instance: The door that appears on a castleblock when it connects to other castleblocks
-	------------
-	Open       | Modular: The flat piece without crenelations for a castle block
-	Closed     | Modular: The piece of a castleblock with all crenelations at the top and no connections
-	Threeside  | Modular: The piece of a castleblock with crenelations on 3 sides
-	Opposite   | Modular: The straight piece of a castle block
-	Adjacent   | Modular: The corner piece for a castle block
-	Single     | Modular: The piece of a castleblock that only has crenelations on one side
+Models:
+	Open:                  Modular | The flat piece without crenelations for a castle block
+	Closed:                Modular | The piece of a castleblock with all crenelations at the top and no connections
+	Single:                Modular | The piece of a castleblock that only has crenelations on one side
+	Opposite:              Modular | The straight piece of a castle block
+	Adjacent:              Modular | The corner piece for a castle block
+	Threeside:             Modular | The piece of a castleblock with crenelations on 3 sides
+	---------
+	doorPrefab:           Instance | The door that appears on a castleblock when it connects to other castleblocks
 
 -- Stone Castle Block --
-Name: Castle Block
+Name: Stone Castle Block
 UniqueName: castleblock
-Models: 
-	doorPrefab | Instance: The door that appears on a castleblock when it connects to other castleblocks
-	------------
-	Open       | Modular: The flat piece without crenelations for a castle block
-	Closed     | Modular: The piece of a castleblock with all crenelations at the top and no connections
-	Threeside  | Modular: The piece of a castleblock with crenelations on 3 sides
-	Opposite   | Modular: The straight piece of a castle block
-	Adjacent   | Modular: The corner piece for a castle block
-	Single     | Modular: The piece of a castleblock that only has crenelations on one side
-	
+Models:
+	Open:                  Modular | The flat piece without crenelations for a castle block
+	Closed:                Modular | The piece of a castleblock with all crenelations at the top and no connections
+	Single:                Modular | The piece of a castleblock that only has crenelations on one side
+	Opposite:              Modular | The straight piece of a castle block
+	Adjacent:              Modular | The corner piece for a castle block
+	Threeside:             Modular | The piece of a castleblock with crenelations on 3 sides
+	---------
+	doorPrefab:           Instance | The door that appears on a castleblock when it connects to other castleblocks
 
+-- Wooden Gate --
+Name: Wooden Gate
+UniqueName: woodengate
+Models:
+	gate:                 Instance | The main model of the gate, excluding the porticulus
+	porticulus:           Instance | The part of the gate that moves up and down to show opening/closing
 
-woodengate
-gate
-castlestairs
-archer
-ballista
-throneroom
-chamberofwar
-greathall
-moat
-barracks
-archerschool
-road
-stoneroad
-smallhouse
-well
-largehouse
-manorhouse
-townsquare
-tavern
-firehouse
-cemetarydummy
-cemetarykeeper
-garden
-church
-library
-clinic
-hospital
-fountain
-largefountain
-bathhouse
-statue_levi
-statue_barbara
-statue_sam
-greatlibrary
-cathedral
-farm
-smallgranary
-largegranary
-windmill
-baker
-orchard
-producestand
-fishinghut
-fishmonger
-swineherd
-butcher
-smallmarket
-market
-noria
-aqueduct
-reservoir
-quarry
-forester
-smallstockpile
-largestockpile
-charcoalmaker
-ironmine
-blacksmith
-Mason
-destructioncrew
-outpost
-dock
-transportship
-trooptransportship
-pier
-bridge
-drawbridge
-stonebridge
-cemetary
-cemetaryCircle
-cemetaryDiamond
-cemetary44
+-- Stone Gate --
+Name: Stone Gate
+UniqueName: gate
+Models:
+	gate:                 Instance | The main model of the gate, excluding the porticulus
+	porticulus:           Instance | The part of the gate that moves up and down to show opening/closing
+
+-- Castle Stairs --
+Name: Castle Stairs
+UniqueName: castlestairs
+Models:
+	stairsFront:           Modular | stairs facing +z
+	stairsRight:           Modular | stairs facing +x
+	stairsDown:            Modular | stairs facing -z
+	stairsLeft:            Modular | stairs facing -x
+
+-- Archer Tower --
+Name: Archer Tower
+UniqueName: archer
+Models:
+	baseModel:            Instance | The main model of the Archer Tower
+	veteranModel:         Instance | An embelishment added to the archer tower when it achieves the veteran status
+
+-- Ballista Tower --
+Name: Ballista Tower
+UniqueName: ballista
+Models:
+	veteranModel:         Instance | An embelishment added to the archer tower when it achieves the veteran status
+	baseModel:            Instance | The main model of the Ballista Tower
+	topBase:              Instance | The base of the rotational top half of the ballista
+	-------
+	armR:                 Instance | The right side arm used to animate the ballista's firing movement
+	armREnd:              Instance | The right end of the right arm of the ballista; used for anchoring the right side of the string in animation
+	-------
+	armL:                 Instance | The left side arm used to animate the ballista's firing movement
+	armLEnd:              Instance | The left end of the left arm of the ballista; used for anchoring the left side of the string in animation
+	-------
+	stringR:              Instance | The right side of the animated string used to pull back and fire the ballista projectile
+	stringL:              Instance | The left side of the animated string used to pull back and fire the ballista projectile
+	-------
+	projectile:           Instance | The projectile fired from the ballista
+	projectileEnd:        Instance | The end of the ballista projectile that's pulled back before firing
+	-------------
+	flag:                 Instance | A decorative flag on the ballista
+
+[Not Supported]
+-- Aqueduct --
+Name: Aqueduct
+UniqueName: aqueduct
+
+[Not Supported]
+-- Archer School --
+Name: Archer School
+UniqueName: archerschool
+
+[Not Supported]
+-- Baker --
+Name: Baker
+UniqueName: baker
+
+[Not Supported]
+-- Barracks --
+Name: Barracks
+UniqueName: barracks
+
+[Not Supported]
+-- Bath House --
+Name: Bath House
+UniqueName: bathhouse
+
+[Not Supported]
+-- Blacksmith --
+Name: Blacksmith
+UniqueName: blacksmith
+
+[Not Supported]
+-- Bridge --
+Name: Bridge
+UniqueName: bridge
+
+[Not Supported]
+-- Butcher --
+Name: Butcher
+UniqueName: butcher
+
+[Not Supported]
+-- Cathedral --
+Name: Cathedral
+UniqueName: cathedral
+
+[Not Supported]
+-- Cemetery --
+Name: Cemetery
+UniqueName: cemetery
+
+[Not Supported]
+-- Cemeteries --
+Name: Cemeteries
+UniqueName: cemeterydummy
+
+[Not Supported]
+-- Cemetery --
+Name: Cemetery
+UniqueName: cemetery44
+
+[Not Supported]
+-- Cemetery Circle --
+Name: Cemetery Circle
+UniqueName: cemeteryCircle
+
+[Not Supported]
+-- Cemetery Diamond --
+Name: Cemetery Diamond
+UniqueName: cemeteryDiamond
+
+[Not Supported]
+-- Cemetery Caretaker --
+Name: Cemetery Caretaker
+UniqueName: cemeterykeeper
+
+[Not Supported]
+-- Chamber of War --
+Name: Chamber of War
+UniqueName: chamberofwar
+
+[Not Supported]
+-- Charcoal Maker --
+Name: Charcoal Maker
+UniqueName: charcoalmaker
+
+[Not Supported]
+-- Church --
+Name: Church
+UniqueName: church
+
+[Not Supported]
+-- Clinic --
+Name: Clinic
+UniqueName: clinic
+
+[Not Supported]
+-- Rock Removal --
+Name: Rock Removal
+UniqueName: destructioncrew
+
+[Not Supported]
+-- Dock --
+Name: Dock
+UniqueName: dock
+
+[Not Supported]
+-- Drawbridge --
+Name: Drawbridge
+UniqueName: drawbridge
+
+[Not Supported]
+-- Farm --
+Name: Farm
+UniqueName: farm
+
+[Not Supported]
+-- Fire Brigade --
+Name: Fire Brigade
+UniqueName: firehouse
+
+[Not Supported]
+-- Fishing Hut --
+Name: Fishing Hut
+UniqueName: fishinghut
+
+[Not Supported]
+-- Fishmonger --
+Name: Fishmonger
+UniqueName: fishmonger
+
+[Not Supported]
+-- Forester --
+Name: Forester
+UniqueName: forester
+
+[Not Supported]
+-- Fountain --
+Name: Fountain
+UniqueName: fountain
+
+[Not Supported]
+-- Garden --
+Name: Garden
+UniqueName: garden
+
+[Not Supported]
+-- Granary --
+Name: Granary
+UniqueName: largegranary
+
+[Not Supported]
+-- Great Hall --
+Name: Great Hall
+UniqueName: greathall
+
+[Not Supported]
+-- Great Library --
+Name: Great Library
+UniqueName: greatlibrary
+
+[Not Supported]
+-- Hospital --
+Name: Hospital
+UniqueName: hospital
+
+[Not Supported]
+-- Hovel --
+Name: Hovel
+UniqueName: smallhouse
+
+[Not Supported]
+-- Iron Mine --
+Name: Iron Mine
+UniqueName: ironmine
+
+[Not Supported]
+-- Large Fountain --
+Name: Large Fountain
+UniqueName: largefountain
+
+[Not Supported]
+-- Cottage --
+Name: Cottage
+UniqueName: largehouse
+
+[Not Supported]
+-- Library --
+Name: Library
+UniqueName: library
+
+[Not Supported]
+-- Manor --
+Name: Manor
+UniqueName: manorhouse
+
+[Not Supported]
+-- Market --
+Name: Market
+UniqueName: market
+
+[Not Supported]
+-- Mason --
+Name: Mason
+UniqueName: Mason
+
+[Not Supported]
+-- Moat --
+Name: Moat
+UniqueName: moat
+
+[Not Supported]
+-- Noria --
+Name: Noria
+UniqueName: noria
+
+[Not Supported]
+-- Orchard --
+Name: Orchard
+UniqueName: orchard
+
+[Not Supported]
+-- Outpost --
+Name: Outpost
+UniqueName: outpost
+
+[Not Supported]
+-- Pier --
+Name: Pier
+UniqueName: pier
+
+[Not Supported]
+-- Produce Storage --
+Name: Produce Storage
+UniqueName: producestand
+
+[Not Supported]
+-- Quarry --
+Name: Quarry
+UniqueName: quarry
+
+[Not Supported]
+-- Reservoir --
+Name: Reservoir
+UniqueName: reservoir
+
+[Not Supported]
+-- Road --
+Name: Road
+UniqueName: road
+
+[Not Supported]
+-- Rubble --
+Name: Rubble
+UniqueName: rubble
+
+[Not Supported]
+-- Small Granary --
+Name: Small Granary
+UniqueName: smallgranary
+
+[Not Supported]
+-- Small Market --
+Name: Small Market
+UniqueName: smallmarket
+
+[Not Supported]
+-- Small Stockpile --
+Name: Small Stockpile
+UniqueName: smallstockpile
+
+[Not Supported]
+-- Queen Barbara --
+Name: Queen Barbara
+UniqueName: statue_barbara
+
+[Not Supported]
+-- Lord Levi --
+Name: Lord Levi
+UniqueName: statue_levi
+
+[Not Supported]
+-- Lord Nextraztus --
+Name: Lord Nextraztus
+UniqueName: statue_sam
+
+[Not Supported]
+-- Stockpile --
+Name: Stockpile
+UniqueName: largestockpile
+
+[Not Supported]
+-- Stone Bridge --
+Name: Stone Bridge
+UniqueName: stonebridge
+
+[Not Supported]
+-- Stone Road --
+Name: Stone Road
+UniqueName: stoneroad
+
+[Not Supported]
+-- Swineherd --
+Name: Swineherd
+UniqueName: swineherd
+
+[Not Supported]
+-- Tavern --
+Name: Tavern
+UniqueName: tavern
+
+[Not Supported]
+-- Treasure Room --
+Name: Treasure Room
+UniqueName: throneroom
+
+[Not Supported]
+-- Town Square --
+Name: Town Square
+UniqueName: townsquare
+
+[Not Supported]
+-- Transport Ship --
+Name: Transport Ship
+UniqueName: transportship
+
+[Not Supported]
+-- Troop Transport Ship --
+Name: Troop Transport Ship
+UniqueName: trooptransportship
+
+[Not Supported]
+-- Well --
+Name: Well
+UniqueName: well
+
+[Not Supported]
+-- Windmill --
+Name: Windmill
+UniqueName: windmill
 
