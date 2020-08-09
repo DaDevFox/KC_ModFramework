@@ -20,7 +20,7 @@ When you create your reskin through the Framework, you must give it a *Collectio
 
 When you add buildings to a collection, the framework will reskin them as usual, and if there is more than one reskin for the same building, it will randomize the reskin for that building each time it is placed, allowing for visual variety. 
 
-This all works within the same collection, but what if you want a set of collections that all have an overarching theme, and should work together? For that you have to now consider *Compatability*. When you create a collection, part of the information you must fill ou tis a *Compatability Identifier*. This is an ID that the Framework uses to determine which collections can mix and match with each other, and which shouldn't. 
+This all works within the same collection, but what if you want a set of collections that all have an overarching theme, and should work together? For that you have to now consider *Compatability*. When you create a collection, part of the information you must fill out is a *Compatability Identifier*. This is an ID that the Framework uses to determine which collections can mix and match with each other, and which shouldn't. 
 
 Usually when you give a Compatability Identifier it's the mod name, or if you want a themed modpack, some kind of name such as "My Wonderful Modpack". 
 
@@ -57,7 +57,15 @@ Entries usually contain multiple elements, which can include:
 *Items with a * are always present*
 
 
+
 # Step by Step Guide
+## 0 | Prerequisites
+1. The framework must be used through a mod, using code, mods are written in the language C# (.NET Framework 4.5), using the UnityEngine libraries. A tutorial for getting setup making mods is covered in the basic modding tutorial [here](https://docs.google.com/document/d/1hRrV92_n9zuYxuB-7yCaiftzFsGEsoRRkMnTbaaKRqM/edit) 
+2. You will need some kind of code editor (I recommend Visual Studio 2017 or Visual Studio Code)
+3. You will need the [Unity Editor](https://store.unity.com/#plans-individual) it is free if you choose Unity personal, but not for businesses or if you want the pro version. 
+
+
+
 ## 1 | Model
 
 The first step is, somewhat obviously, to create a model to use. 
@@ -70,8 +78,11 @@ The first piece of information you need to look at is the *Models* section, this
 
 *Models*: The different 3D Models the building uses, these can be *Instance* models or *Modular* models, you will have to model differently according to the type
 
+> **Note**: Unity is the game engine the game uses, and it is what this framework uses. If you are not familiar with Unity's structure, I recommend you read up on concepts such as GameObjects and Components, [this](https://docs.unity3d.com/520/Documentation/Manual/UnityBasics.html) is a good place to start. 
+
+
 **Instance Models**:
-An **Instance** model is one that will be instanced inside of the original building, meaning that model, and all of its children will be *added* to the building, so you can add extra things to the model, like lights or doors, and even add code to make it move or do something during game. With this type of model, all you need to make sure to do is make sure that your scaling and translation is correct, and that it's in a `GameObject` form, the framework won't take raw mesh data, I.E. `.fbx`, `.obj`, or any other export format from your chosen modelling application except `.prefab` More information on this in the **To Make a Model** section.  
+An **Instance** model is a Unity `GameObject` that will be instanced inside of the original building, meaning that model, and all of its children will be *added* to the building, so you can add extra things to the model, like lights or doors, and even add code to make it move or do something during game. With this type of model, all you need to make sure to do is make sure that your scaling and translation is correct, and that it's in a `GameObject` form, the framework won't take raw mesh data, I.E. `.fbx`, `.obj`, or any other export format from your chosen modelling application except `.prefab` More information on this in the **To Make a Model** section.  
 
 **Modular Models**: 
 A *Modular* model isn't the same as an *Instance* model, and in some ways it's even the opposite. Certain buildings interchange their models in a different way, in which they use *only* the mesh data involved with the base GameObject, excluding it's children, and any transformations applied in the Unity Editor, including scale and rotation. This means that if you have a model that was rotated 90 degrees before being imported into Unity, and then you corrected it in the editor, it will disregard this, so all scaling and rotation must be applied *before* being imported into Unity. It will also disregard the children of your model, so this version cannot have arbitrary elements added on to it. 
@@ -212,7 +223,7 @@ Ability to change Stacks and ResourceStacks
 #  Code
 This section will require at least some technical expertise in programming, if you aren't a developer and you're just here to see the barebones of how to get your models into the game, that's fine too! I'll try and keep the guide nice and simple, but I'll have some of the more technical details towards the end for you nerds out there like me :p
 
-To begin, you'll need to have your models set and ready to go, for this I reccomend reading the section on modelling and finding information about the models in the **Building Index** section. 
+To begin, you'll need to have your models set and ready to go, for this I recommend reading the section on modelling and finding information about the models in the **Building Index** section. 
 
 Once you have that done, you'll need to export that into an AssetBundle, this process is already covered in the Kingdoms and Castles [Mod Tutorial](https://modtutorial.kingdomsandcastles.com/) so I won't go into too much detail over it. 
 
